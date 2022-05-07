@@ -1,7 +1,7 @@
 # Wait A Minute! (WAM!)
 ## Description
 
-Wait a minute! Take a step back and get a holistic view of your financial decisions before you jump into them. Consider many suggestions as well as weigh your options before you jump into a purchase you might regret!
+Wait a minute! Let us help you make a more infromed decision. Whether it is a finiancial or a lifestyle decision, take a step back and get a holistic view of it before you jump in. Consider many suggestions as well as weigh your options before you jump into something you might regret! Get tips from the countless others that have tried the same thing so that you can avoid some of the pitfalls.
 
 ## Installation
 
