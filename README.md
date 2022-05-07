@@ -5,10 +5,10 @@ Wait a minute! Let us help you make a more infromed decision. Whether it is a fi
 
 ## Installation
 
-Use the package manager [pip](https://pip.pypa.io/en/stable/) to install foobar.
+This project is written in GO. You will need to have at GO v1.16 at least to be able to run this locally. To check your GO version, run 
 
 ```bash
-pip install foobar
+go version
 ```
 ## Contributing
 Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
