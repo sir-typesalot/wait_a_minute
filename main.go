@@ -2,9 +2,8 @@ package main
 
 import (
 	"github.com/gin-gonic/gin"
-	"wait_a_minute/endpoints"
 )
-
+// Declare router for server
 var router *gin.Engine
 
 func main() {
@@ -13,8 +12,8 @@ func main() {
 
 	// Set the router as the default one provided by Gin
 	router = gin.Default()
-	router.GET("/test", endpoints.TestRoute)
-
+	// Configure routes
+	configRoutes()
 	// Start serving the application
 	router.Run()
 }
