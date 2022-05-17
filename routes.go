@@ -7,4 +7,5 @@ import (
 func configRoutes() {
 	// Link endpoints to functions
 	router.GET("/status", endpoints.GetStatus)
+	router.GET("/test", endpoints.TestModel)
 }
