@@ -5,14 +5,12 @@ import (
 )
 
 type Category struct {
-	ID int
+	Category_ID int
 	Name string
-	Desc string
+	Description string
 	Tags string
-	RequestID int
+	Request_ID int
 }
-// category_id, name, description, tags, request_id
-// Convert to this to enable sqlx
 
 func GetAllCategories() ([]Category, error) {
 
@@ -20,7 +18,7 @@ func GetAllCategories() ([]Category, error) {
 
     db := util.GetConnection()
 
-	result, err := db.Query("SELECT * FROM category")
+	result, err := db.Queryx("SELECT * FROM category")
 	if err != nil { return data, err }
 
 	defer result.Close()
@@ -28,8 +26,7 @@ func GetAllCategories() ([]Category, error) {
 	for result.Next() {
         var category Category
 		// Check for error and return
-        if err := result.Scan(&category.ID, &category.Name, &category.Desc,
-			&category.Tags, &category.RequestID); err != nil { return data, err }
+        if err := result.StructScan(&category); err != nil { return data, err }
 		// Add data to slice
         data = append(data, category)
     }
@@ -48,7 +45,7 @@ func GetCategoryByID(name string, strict bool) ([]Category, error) {
 	} else {
 		query = "SELECT * FROM category WHERE name = ?"
 	}
-	result, err := db.Query(query, name)
+	result, err := db.Queryx(query, name)
 	if err != nil { return data, err }
 
 	defer result.Close()
@@ -56,8 +53,7 @@ func GetCategoryByID(name string, strict bool) ([]Category, error) {
 	for result.Next() {
         var category Category
 		// Check for error and return
-        if err := result.Scan(&category.ID, &category.Name, &category.Desc,
-			&category.Tags, &category.RequestID); err != nil { return data, err }
+        if err := result.Scan(&category); err != nil { return data, err }
 		// Add data to slice
         data = append(data, category)
     }

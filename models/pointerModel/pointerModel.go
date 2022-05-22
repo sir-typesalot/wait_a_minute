@@ -6,14 +6,12 @@ import (
 
 type Pointer struct {
 	ID int
-	Name string
-	Desc string
+	Topic_ID int
+	Title string
+	Description string
 	Tags string
-	TopicID int
-	RequestID int
+	Request_ID int
 }
-// id, topic_id, title, description, tags, request_id
-// Need to convert to these to enable sqlx
 
 func GetPointers(topicID int) ([]Pointer, error) {
 
@@ -21,7 +19,7 @@ func GetPointers(topicID int) ([]Pointer, error) {
 
     db := util.GetConnection()
 
-	result, err := db.Query("SELECT * FROM topic_pointer WHERE topic_id = ?", topicID)
+	result, err := db.Queryx("SELECT * FROM topic_pointer WHERE topic_id = ?", topicID)
 	if err != nil { return data, err }
 
 	defer result.Close()
@@ -29,8 +27,7 @@ func GetPointers(topicID int) ([]Pointer, error) {
 	for result.Next() {
         var pointer Pointer
 		// Check for error and return
-        if err := result.Scan(&pointer.ID, &pointer.Name, &pointer.Desc,
-			&pointer.Tags, &pointer.TopicID, &pointer.RequestID); 
+        if err := result.StructScan(&pointer); 
 			err != nil { return data, err }
 		// Add data to slice
         data = append(data, pointer)

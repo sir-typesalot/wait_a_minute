@@ -6,15 +6,13 @@ import (
 )
 
 type Topic struct {
-	ID int
+	Topic_ID int
 	Name string
-	Desc string
+	Description string
 	Tags string
-	CategoryID int
-	RequestID int
+	Category_ID int
+	Request_ID int
 }
-// topic_id, name, description, tags, category_id, request_id
-// Convert to this to enable sqlx
 
 func GetAllTopics(categoryID int) ([]Topic, error) {
 
@@ -27,7 +25,7 @@ func GetAllTopics(categoryID int) ([]Topic, error) {
 		query = "SELECT * FROM topic"
 	}
 	db := util.GetConnection()
-	result, err := db.Query(query, categoryID)
+	result, err := db.Queryx(query, categoryID)
 	if err != nil { return data, err }
 
 	defer result.Close()
@@ -35,8 +33,7 @@ func GetAllTopics(categoryID int) ([]Topic, error) {
 	for result.Next() {
         var topic Topic
 		// Check for error and return
-        if err := result.Scan(&topic.ID, &topic.Name, &topic.Desc,
-			&topic.Tags, &topic.CategoryID, &topic.RequestID); 
+        if err := result.StructScan(&topic); 
 			err != nil { return data, err }
 		// Add data to slice
         data = append(data, topic)
@@ -52,7 +49,7 @@ func CreateNewTopic(name string, desc string, tags string, categoryName string) 
 	query := `INSERT INTO requests_log 
 		(type, mapping_id, title, description, tags, status, change_datetime) 
 		VALUES ('topic', ?, ?, ?, ?, 'created', NOW())`
-	result, _ := db.Exec(query, category[0].ID, name, desc, tags)
+	result, _ := db.Exec(query, category[0].Category_ID, name, desc, tags)
 	
 	rowsAff, _ := result.RowsAffected()
 	if rowsAff == 1 {

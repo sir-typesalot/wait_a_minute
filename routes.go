@@ -19,4 +19,5 @@ func configRoutes() {
 	router.POST("/pointer/createPointer", endpoints.CreatePointer)
 	// Request Endpoints
 	router.GET("/requests/getRequests", endpoints.GetRequests)
+	router.POST("/requests/approveRequest", endpoints.ApproveReq)
 }
