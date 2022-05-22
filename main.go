@@ -1,8 +1,11 @@
 package main
 
 import (
+	"fmt"
+
 	"github.com/gin-gonic/gin"
 )
+
 // Declare router for server
 var router *gin.Engine
 
@@ -14,6 +17,8 @@ func main() {
 	router = gin.Default()
 	// Configure routes
 	configRoutes()
+	fmt.Println("Configured Routes...")
 	// Start serving the application
-	router.Run()
+	fmt.Println("Running on port 8080")
+	router.Run(":8080")
 }
