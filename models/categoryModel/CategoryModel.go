@@ -11,6 +11,8 @@ type Category struct {
 	Tags string
 	RequestID int
 }
+// category_id, name, description, tags, request_id
+// Convert to this to enable sqlx
 
 func GetAllCategories() ([]Category, error) {
 

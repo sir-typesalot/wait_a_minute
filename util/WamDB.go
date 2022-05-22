@@ -1,23 +1,23 @@
 package util
 
 import (
-    "database/sql"
 	"fmt"
     "log"
-    _ "github.com/go-sql-driver/mysql"
+	_ "github.com/go-sql-driver/mysql"
+	"github.com/jmoiron/sqlx"
 )
 
 type DB_Conn struct {
-	db *sql.DB
+	db *sqlx.DB
 	CONN_OPEN bool
 }
 
-func connectToDB(DB *DB_Conn) (outputDB *sql.DB, outputError error) {
+func connectToDB(DB *DB_Conn) (outputDB *sqlx.DB, outputError error) {
 
 	var err error
 	// Create connection string
 	connection_string := connectionString()
-	DB.db, err = sql.Open("mysql", connection_string)
+	DB.db, err = sqlx.Open("mysql", connection_string)
 	// handle connection error
 	if err != nil {
 		log.Fatal(err)
@@ -29,7 +29,7 @@ func connectToDB(DB *DB_Conn) (outputDB *sql.DB, outputError error) {
     return
 }
 
-func GetConnection() *sql.DB {
+func GetConnection() *sqlx.DB {
 
 	dbCon, errMessage := connectToDB(&DB_Conn{})
 	if errMessage != nil {

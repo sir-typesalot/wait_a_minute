@@ -13,14 +13,21 @@ type Topic struct {
 	CategoryID int
 	RequestID int
 }
+// topic_id, name, description, tags, category_id, request_id
+// Convert to this to enable sqlx
 
-func GetAllTopics() ([]Topic, error) {
+func GetAllTopics(categoryID int) ([]Topic, error) {
 
 	var data []Topic
 
-    db := util.GetConnection()
-
-	result, err := db.Query("SELECT * FROM category")
+	var query string
+	if categoryID != 0 {
+		query = "SELECT * FROM topic WHERE category_id = ?"
+	} else {
+		query = "SELECT * FROM topic"
+	}
+	db := util.GetConnection()
+	result, err := db.Query(query, categoryID)
 	if err != nil { return data, err }
 
 	defer result.Close()

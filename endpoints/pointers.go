@@ -5,29 +5,24 @@ import (
 	"fmt"
 	"net/http"
 	"strconv"
-	"wait_a_minute/models/topicModel"
+	"wait_a_minute/models/pointerModel"
 
 	"github.com/gin-gonic/gin"
 )
 
-type TopicArgs struct {
+type PointerArgs struct {
 	Name string `json:"name"`
 	Desc string `json:"desc"`
 	Tags string `json:"tags"`
-	CategoryName string `json:"categoryName"`
+	TopicID int `json:"topicID"`
 }
-func GetTopics(c *gin.Context) {
 
-	categoryID := c.Query("topicID")
-	
-	var catID_int int
-	if categoryID != "" {
-		catID_int, _ = strconv.Atoi(categoryID)
-	} else {
-		catID_int = 0
-	}
+func GetPointers(c *gin.Context) {
 
-	data, err := topicModel.GetAllTopics(catID_int)
+	topicID := c.Query("topicID")
+	topicID_int, _ := strconv.Atoi(topicID)
+
+	data, err := pointerModel.GetPointers(topicID_int)
 	if err != nil {
 		fmt.Println(err)
 		c.IndentedJSON(http.StatusInternalServerError, data)
@@ -36,14 +31,13 @@ func GetTopics(c *gin.Context) {
 	}
 }
 
-func CreateTopic(c *gin.Context) {
+func CreatePointer(c *gin.Context) {
 
-	var vars TopicArgs
+	var vars PointerArgs
 	decoder := json.NewDecoder(c.Request.Body)
 	decoder.Decode(&vars)
 	
-	status := topicModel.CreateNewTopic(vars.Name, vars.Desc, vars.Tags, vars.CategoryName)
-	// TODO : Get some better data as a response here
+	status := pointerModel.CreateNewPointer(vars.Name, vars.Desc, vars.Tags, vars.TopicID)
 	if status == 200 {
 		fmt.Println("Topic Created")
 		c.IndentedJSON(http.StatusOK, "Topic Created")
