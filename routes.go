@@ -9,15 +9,17 @@ func configRoutes() {
 	// Simple status check
 	router.GET("/status", endpoints.GetStatus)
 	// Category Endpoints
-	router.GET("/category/getCategory", endpoints.CategoryByID)
-	router.GET("/category/getAllCategories", endpoints.AllCategories)
+	router.GET("/category/get", endpoints.CategoryByID)
+	router.GET("/category/getAll", endpoints.AllCategories)
+	// router.GET("/category/create", endpoints.AllCategories)
+
 	// Topic Endpoints
-	router.POST("/topic/createTopic", endpoints.CreateTopic)
-	router.GET("/topic/getAllTopics", endpoints.CreateTopic)
+	router.POST("/topic/create", endpoints.CreateTopic)
+	router.GET("/topic/get", endpoints.GetTopics)
 	// Pointer Endpoints
-	router.GET("/pointer/getPointers", endpoints.GetPointers)
-	router.POST("/pointer/createPointer", endpoints.CreatePointer)
+	router.GET("/pointer/get", endpoints.GetPointers)
+	router.POST("/pointer/create", endpoints.CreatePointer)
 	// Request Endpoints
-	router.GET("/requests/getRequests", endpoints.GetRequests)
-	router.POST("/requests/approveRequest", endpoints.ApproveReq)
+	router.GET("/requests/get", endpoints.GetRequests)
+	router.POST("/requests/approve", endpoints.ApproveReq)
 }

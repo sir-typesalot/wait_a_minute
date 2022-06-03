@@ -1,8 +1,9 @@
 package topicModel
 
 import (
-	"wait_a_minute/util"
+	"fmt"
 	"wait_a_minute/models/categoryModel"
+	"wait_a_minute/util"
 )
 
 type Topic struct {
@@ -20,12 +21,12 @@ func GetAllTopics(categoryID int) ([]Topic, error) {
 
 	var query string
 	if categoryID != 0 {
-		query = "SELECT * FROM topic WHERE category_id = ?"
+		query = fmt.Sprintf("SELECT * FROM topic WHERE category_id = %d", categoryID)
 	} else {
 		query = "SELECT * FROM topic"
 	}
 	db := util.GetConnection()
-	result, err := db.Queryx(query, categoryID)
+	result, err := db.Queryx(query)
 	if err != nil { return data, err }
 
 	defer result.Close()

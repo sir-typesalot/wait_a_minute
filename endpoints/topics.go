@@ -18,7 +18,7 @@ type TopicArgs struct {
 }
 func GetTopics(c *gin.Context) {
 
-	categoryID := c.Query("topicID")
+	categoryID := c.Query("categoryID")
 	
 	var catID_int int
 	if categoryID != "" {
