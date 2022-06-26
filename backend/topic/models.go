@@ -2,7 +2,7 @@ package topicModel
 
 import (
 	"fmt"
-	"wait_a_minute/backend/models/categoryModel"
+	"wait_a_minute/backend/category"
 	"wait_a_minute/backend/util"
 )
 
@@ -43,14 +43,14 @@ func GetAllTopics(categoryID int) ([]Topic, error) {
 }
 
 func CreateNewTopic(name string, desc string, tags string, categoryName string) int {
-	category, _ := categoryModel.GetCategoryByID(categoryName, true)
+	category, _ := categoryModel.GetCategoryByName(categoryName, true)
 
 	db := util.GetConnection()
 	
 	query := `INSERT INTO requests_log 
 		(type, mapping_id, title, description, tags, status, change_datetime) 
 		VALUES ('topic', ?, ?, ?, ?, 'created', NOW())`
-	result, _ := db.Exec(query, category[0].Category_ID, name, desc, tags)
+	result, _ := db.Exec(query, category.Category_ID, name, desc, tags)
 	
 	rowsAff, _ := result.RowsAffected()
 	if rowsAff == 1 {

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+{{ template "header" }}
+<body onload="loadData()">
+<nav class="navigation">
+  <ul class="nav justify-content-center nav-pills">
+      <li class="nav-item">
+        <a class="nav-link" href="/">Home</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/category/get-all">Categories</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link active current-tab" href="/topic/get-all">Topics</a>
+      </li>
+  </ul>
+</nav>
+</body>
+<div class="card-container">
+  {{range $c := .Content}}
+  <a class="card-links text-primary" href="/">
+    <div class="card bg-custom">
+      <div class="card-body">
+        {{$c.Name}} - {{$c.Description}}
+      </div>
+    </div>
+  </a>
+  {{end}}
+</div>
+{{ template "footer" }}
+</html>

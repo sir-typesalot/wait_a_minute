@@ -5,7 +5,7 @@ import (
 	"fmt"
 	"net/http"
 	"strconv"
-	"wait_a_minute/backend/models/topicModel"
+	"wait_a_minute/backend/topic"
 
 	"github.com/gin-gonic/gin"
 )
@@ -32,7 +32,9 @@ func GetTopics(c *gin.Context) {
 		fmt.Println(err)
 		c.IndentedJSON(http.StatusInternalServerError, data)
 	} else {
-		c.IndentedJSON(http.StatusOK, data)
+		c.HTML(http.StatusOK, "topics.html", gin.H{
+			"Content": data,
+		})
 	}
 }
 

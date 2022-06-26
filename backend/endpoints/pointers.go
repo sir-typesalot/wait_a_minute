@@ -5,7 +5,7 @@ import (
 	"fmt"
 	"net/http"
 	"strconv"
-	"wait_a_minute/backend/models/pointerModel"
+	"wait_a_minute/backend/pointer"
 
 	"github.com/gin-gonic/gin"
 )

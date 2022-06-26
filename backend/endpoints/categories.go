@@ -4,16 +4,15 @@ import (
 	"encoding/json"
 	"fmt"
 	"net/http"
-	"wait_a_minute/backend/models/categoryModel"
+	"wait_a_minute/backend/category"
 
 	"github.com/gin-gonic/gin"
 )
 
-func CategoryByID(c *gin.Context) {
-	// data, err := categoryModel.GetAllCategories()
+func CategoryByName(c *gin.Context) {
 	name := c.Query("name")
 
-	data, err := categoryModel.GetCategoryByID(name, true)
+	data, err := categoryModel.GetCategoryByName(name, true)
 	if err != nil {
 		fmt.Println(err)
 		c.IndentedJSON(http.StatusInternalServerError, data)
@@ -28,7 +27,9 @@ func AllCategories(c *gin.Context) {
 		fmt.Println(err)
 		c.IndentedJSON(http.StatusInternalServerError, data)
 	} else {
-		c.IndentedJSON(http.StatusOK, data)
+		c.HTML(http.StatusOK, "categories.html", gin.H{
+			"Content": data,
+		})
 	}
 }
 
