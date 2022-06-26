@@ -15,6 +15,10 @@ func main() {
 
 	// Set the router as the default one provided by Gin
 	router = gin.Default()
+
+	router.Static("frontend/assets", "./assets")
+	router.LoadHTMLGlob("frontend/templates/*.html")
+
 	// Configure routes
 	configRoutes()
 	fmt.Println("Configured Routes...")

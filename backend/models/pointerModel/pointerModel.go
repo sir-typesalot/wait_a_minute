@@ -1,7 +1,7 @@
 package pointerModel
 
 import (
-	"wait_a_minute/util"
+	"wait_a_minute/backend/util"
 )
 
 type Pointer struct {

@@ -2,8 +2,8 @@ package topicModel
 
 import (
 	"fmt"
-	"wait_a_minute/models/categoryModel"
-	"wait_a_minute/util"
+	"wait_a_minute/backend/models/categoryModel"
+	"wait_a_minute/backend/util"
 )
 
 type Topic struct {

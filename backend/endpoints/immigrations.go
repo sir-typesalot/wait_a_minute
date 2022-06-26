@@ -4,7 +4,7 @@ import (
 	"encoding/json"
 	"fmt"
 	"net/http"
-	"wait_a_minute/models/immigrationModel"
+	"wait_a_minute/backend/models/immigrationModel"
 
 	"github.com/gin-gonic/gin"
 )

@@ -1,7 +1,7 @@
 package main
 
 import (
-	"wait_a_minute/endpoints"
+	"wait_a_minute/backend/endpoints"
 )
 
 func configRoutes() {

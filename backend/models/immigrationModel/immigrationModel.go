@@ -2,7 +2,7 @@ package immigrationModel
 
 import (
 	"fmt"
-	"wait_a_minute/util"
+	"wait_a_minute/backend/util"
 )
 
 type Requests struct {

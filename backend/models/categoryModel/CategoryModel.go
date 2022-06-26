@@ -1,7 +1,7 @@
 package categoryModel
 
 import (
-	"wait_a_minute/util"
+	"wait_a_minute/backend/util"
 )
 
 type Category struct {

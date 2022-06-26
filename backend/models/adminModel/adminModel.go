@@ -1,7 +1,7 @@
 package adminModel
 
 import (
-	"wait_a_minute/util"
+	"wait_a_minute/backend/util"
 
 	"golang.org/x/crypto/bcrypt"
 )
