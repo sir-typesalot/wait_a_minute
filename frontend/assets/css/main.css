@@ -9,7 +9,7 @@ body {
     margin: 0.5em;
 }
 .current-tab {
-    background-color: #2aa76f !important;
+    background-color: #ffaa55 !important;
 }
 .navigation a {
     color: white;
@@ -28,10 +28,15 @@ body {
 .info-tile {
     width: 80%;
 }
-#title-header {
+
+.title-header {
     font-size: 1.8em;
-    color: #2aa76f;
+    color: #ffaa55;
     margin-top: .5em;
+}
+.subtitle-lvl2 {
+    font-size: 1.2em;
+    color: white
 }
 
 /* Card styling */
@@ -45,9 +50,13 @@ body {
 .card {
     flex: 1;
     margin: 0.5em;
-    padding: 1em;
+    padding: .5em;
     font-size: 1em;
+    border-radius: 1em;
     text-decoration: none !important;
+}
+.card-body {
+    padding: .2em;
 }
 .card-links {
     text-decoration: none !important;

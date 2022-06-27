@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+{{ template "header" }}
+<body onload="loadData()">
+<nav class="navigation">
+  <ul class="nav justify-content-center nav-pills">
+      <li class="nav-item">
+        <a class="nav-link active current-tab" href="/">Home</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/category/get-all">Categories</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/topic/get-all">Topics</a>
+      </li>
+  </ul>
+</nav>
+<div class="container">
+  <h1>404 Error - Server Encountered an error</h1>
+  <p>{{ .ErrorMsg }}</p>
+</div>
+</body>
+{{ template "footer" }}
+</html>

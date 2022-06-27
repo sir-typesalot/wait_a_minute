@@ -11,12 +11,13 @@ func configRoutes() {
 	router.GET("/status", endpoints.GetStatus)
 	// Category Endpoints
 	router.GET("/category/get", endpoints.CategoryByName)
-	router.GET("/category/get-all", endpoints.AllCategories)
+	router.GET("/categories", endpoints.AllCategories)
 	router.GET("/category/create", endpoints.CreateCategory)
 
 	// Topic Endpoints
 	router.POST("/topic/create", endpoints.CreateTopic)
 	router.GET("/topic/get-all", endpoints.GetTopics)
+	// router.GET("/topic/get", endpoints.GetTopic)
 	// NEED A GET 1 TOPIC ENDPOINT
 
 	// Pointer Endpoints

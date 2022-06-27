@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"net/http"
 	"wait_a_minute/backend/category"
+	topicModel "wait_a_minute/backend/topic"
 
 	"github.com/gin-gonic/gin"
 )
@@ -12,12 +13,21 @@ import (
 func CategoryByName(c *gin.Context) {
 	name := c.Query("name")
 
-	data, err := categoryModel.GetCategoryByName(name, true)
+	categoryData, err := categoryModel.GetCategoryByName(name, true)
+	topicData, err:= topicModel.GetAllTopics(categoryData.Category_ID)
+
 	if err != nil {
 		fmt.Println(err)
-		c.IndentedJSON(http.StatusInternalServerError, data)
+		c.HTML(http.StatusOK, "404.html", gin.H{
+			"ErrorMsg": err,
+		})
 	} else {
-		c.IndentedJSON(http.StatusOK, data)
+		c.HTML(http.StatusOK, "category.html", gin.H{
+			"Category": categoryData,
+			"Topics": topicData,
+			"ContentName": "Topic",
+			"AddItemURL": "/topic/new",
+		})
 	}
 }
 
@@ -25,10 +35,14 @@ func AllCategories(c *gin.Context) {
 	data, err := categoryModel.GetAllCategories()
 	if err != nil {
 		fmt.Println(err)
-		c.IndentedJSON(http.StatusInternalServerError, data)
+		c.HTML(http.StatusOK, "404.html", gin.H{
+			"ErrorMsg": err,
+		})
 	} else {
 		c.HTML(http.StatusOK, "categories.html", gin.H{
 			"Content": data,
+			"ContentName": "Category",
+			"AddItemURL": "/category/new",
 		})
 	}
 }

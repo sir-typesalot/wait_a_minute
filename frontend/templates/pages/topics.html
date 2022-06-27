@@ -8,24 +8,25 @@
         <a class="nav-link" href="/">Home</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="/category/get-all">Categories</a>
+        <a class="nav-link" href="/categories">Categories</a>
       </li>
       <li class="nav-item">
         <a class="nav-link active current-tab" href="/topic/get-all">Topics</a>
       </li>
   </ul>
 </nav>
-</body>
 <div class="card-container">
+  {{ template "add-item" .}}
   {{range $c := .Content}}
   <a class="card-links text-primary" href="/">
     <div class="card bg-custom">
       <div class="card-body">
-        {{$c.Name}} - {{$c.Description}}
+        {{$c.Name}}
       </div>
     </div>
   </a>
   {{end}}
 </div>
+</body>
 {{ template "footer" }}
 </html>

@@ -15,13 +15,17 @@
       </li>
   </ul>
 </nav>
+<div class="container into-tile">
+    <h1 class="title-header">{{.Topic.Name}}</h1>
+    <h2 class="subtitle-lvl2">{{.Topic.Description}}</h2>
+</div>
 <div class="card-container">
   {{ template "add-item" .}}
-  {{range $c := .Content}}
-  <a class="card-links text-primary" href="/category/get?name={{$c.Name}}">
+  {{range $t := .Pointers}}
+  <a class="card-links text-primary" href="/category/get?name={{$t.Name}}">
     <div class="card bg-custom">
       <div class="card-body">
-        {{$c.Name}}
+        {{$t.Name}}
       </div>
     </div>
   </a>

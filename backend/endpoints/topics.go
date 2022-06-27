@@ -34,6 +34,8 @@ func GetTopics(c *gin.Context) {
 	} else {
 		c.HTML(http.StatusOK, "topics.html", gin.H{
 			"Content": data,
+			"ContentName": "topic",
+			"AddItemURL": "/topic/new",
 		})
 	}
 }

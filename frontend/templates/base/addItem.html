@@ -1,0 +1,9 @@
+{{ define "add-item"}}
+<a class="card-links text-primary" href="{{ .AddItemURL }}">
+    <div class="card bg-custom">
+      <div class="card-body">
+        <span>&#10010;</span> Add New {{ .ContentName }}
+      </div>
+    </div>
+</a>
+{{ end }}
