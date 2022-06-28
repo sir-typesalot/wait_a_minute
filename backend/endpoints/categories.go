@@ -4,7 +4,7 @@ import (
 	"encoding/json"
 	"fmt"
 	"net/http"
-	"wait_a_minute/backend/category"
+	categoryModel "wait_a_minute/backend/category"
 	topicModel "wait_a_minute/backend/topic"
 
 	"github.com/gin-gonic/gin"
