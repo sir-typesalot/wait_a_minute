@@ -10,23 +10,23 @@
           </button>
         </div>
         <div class="modal-body">
-          <form id="newItemForm">
+          <form id="newItemForm" action="{{ .AddItemURL }}" method="POST">
             <div class="form-group">
-              <label for="titleInput">{{ .ContentName }} Title</label>
-              <input type="text" class="form-control" id="titleInput" aria-describedby="emailHelp" placeholder="Title">
+              <label for="contentTitle">{{ .ContentName }} Title</label>
+              <input type="text" name="title" class="form-control" id="contentTitle" placeholder="Title" required>
             </div>
             <div class="form-group">
-              <label for="descInput">Description</label>
-              <input type="text" class="form-control" id="descInput" placeholder="Description">
+              <label for="contentDesc">Description</label>
+              <input type="text" name="desc" class="form-control" id="contentDesc" placeholder="Description" required>
             </div>
             <div class="form-group">
-              <label for="tagsInput">Tags</label>
-              <input type="text" class="form-control" id="tagsInput" placeholder="eg. Automotive,Financial">
+              <label for="contentTags">Tags</label>
+              <input type="text" name="tags" class="form-control" id="contentTags" placeholder="eg. Automotive,Financial">
             </div>
             {{ if eq .ContentName "Category" }}
             {{ else }}
-            <label for="selectInput">Parent {{ .ParentName }}</label>
-            <select class="form-select" aria-label="Default select example" id="selectInput">
+            <label for="contentParent">Parent {{ .ParentName }}</label>
+            <select class="form-select" name="parentContent" aria-label="Default select example" id="contentParent">
               <option selected>Select</option>
               {{ range $t := .ParentList }}
               <option value="{{$t.Name}}">{{ $t.Name }}</option>

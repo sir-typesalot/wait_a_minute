@@ -1,7 +1,6 @@
 package endpoints
 
 import (
-	"encoding/json"
 	"fmt"
 	"net/http"
 	"strconv"
@@ -33,11 +32,11 @@ func GetPointers(c *gin.Context) {
 
 func CreatePointer(c *gin.Context) {
 
-	var vars PointerArgs
-	decoder := json.NewDecoder(c.Request.Body)
-	decoder.Decode(&vars)
-	
-	status := pointerModel.CreateNewPointer(vars.Name, vars.Desc, vars.Tags, vars.TopicID)
+	title := c.PostForm("title")
+	desc := c.PostForm("desc")
+	tags := c.PostForm("tags")
+	parent := c.PostForm("parentContent")
+	status := pointerModel.CreateNewPointer(title, desc, tags, parent)
 	if status == 200 {
 		fmt.Println("Topic Created")
 		c.IndentedJSON(http.StatusOK, "Topic Created")
