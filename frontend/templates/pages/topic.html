@@ -8,10 +8,10 @@
         <a class="nav-link" href="/">Home</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link active current-tab" href="/categories">Categories</a>
+        <a class="nav-link" href="/categories">Categories</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="/topic/get-all">Topics</a>
+        <a class="nav-link active current-tab" href="/topics">Topics</a>
       </li>
   </ul>
 </nav>
@@ -19,16 +19,17 @@
     <h1 class="title-header">{{.Topic.Name}}</h1>
     <h2 class="subtitle-lvl2">{{.Topic.Description}}</h2>
 </div>
+{{ template "popup" .}}
 <div class="card-container">
   {{ template "add-item" .}}
+  
   {{range $t := .Pointers}}
-  <a class="card-links text-primary" href="/category/get?name={{$t.Name}}">
-    <div class="card bg-custom">
-      <div class="card-body">
-        {{$t.Name}}
-      </div>
+  <div class="card bg-custom">
+    <div class="card-body">
+      <h5 class="card-title text-primary">{{$t.Title}}</h5>
+      <p class="card-text text-primary">{{$t.Description}}</p>
     </div>
-  </a>
+  </div>
   {{end}}
 </div>
 </body>

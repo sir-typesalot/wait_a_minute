@@ -11,7 +11,7 @@
         <a class="nav-link active current-tab" href="/categories">Categories</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="/topic/get-all">Topics</a>
+        <a class="nav-link" href="/topics">Topics</a>
       </li>
   </ul>
 </nav>
@@ -19,10 +19,12 @@
     <h1 class="title-header">{{.Category.Name}}</h1>
     <h2 class="subtitle-lvl2">{{.Category.Description}}</h2>
 </div>
+{{ template "popup" .}}
 <div class="card-container">
   {{ template "add-item" .}}
+
   {{range $t := .Topics}}
-  <a class="card-links text-primary" href="/category/get?name={{$t.Name}}">
+  <a class="card-links text-primary" href="/topic/get?topicID={{$t.Topic_ID}}">
     <div class="card bg-custom">
       <div class="card-body">
         {{$t.Name}}

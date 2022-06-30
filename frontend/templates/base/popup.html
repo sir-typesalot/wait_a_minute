@@ -1,0 +1,44 @@
+{{ define "popup" }}
+<!-- Modal -->
+<div class="modal fade" id="popupWidget" tabindex="-1" role="dialog" aria-labelledby="popupTitle">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="popupTitle">Add New {{ .ContentName }}</h5>
+          <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <form id="newItemForm" action="{{ .AddItemURL }}" method="POST">
+            <div class="form-group">
+              <label for="contentTitle">{{ .ContentName }} Title</label>
+              <input type="text" name="title" class="form-control" id="contentTitle" placeholder="Title" required>
+            </div>
+            <div class="form-group">
+              <label for="contentDesc">Description</label>
+              <input type="text" name="desc" class="form-control" id="contentDesc" placeholder="Description" required>
+            </div>
+            <div class="form-group">
+              <label for="contentTags">Tags</label>
+              <input type="text" name="tags" class="form-control" id="contentTags" placeholder="eg. Automotive,Financial">
+            </div>
+            {{ if eq .ContentName "Category" }}
+            {{ else }}
+            <label for="contentParent">Parent {{ .ParentName }}</label>
+            <select class="form-select" name="parentContent" aria-label="Default select example" id="contentParent">
+              <option selected>Select</option>
+              {{ range $t := .ParentList }}
+              <option value="{{$t.Name}}">{{ $t.Name }}</option>
+              {{ end }}
+            </select>
+            {{ end }}
+            <div class="button-container">
+              <button type="submit" class="btn btn-primary">Submit</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+</div>
+{{ end }}

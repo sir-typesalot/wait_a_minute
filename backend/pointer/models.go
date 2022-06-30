@@ -1,6 +1,7 @@
 package pointerModel
 
 import (
+	topicModel "wait_a_minute/backend/topic"
 	"wait_a_minute/backend/util"
 )
 
@@ -35,14 +36,16 @@ func GetPointers(topicID int) ([]Pointer, error) {
 	return data, nil
 }
 
-func CreateNewPointer(name string, desc string, tags string, topicID int) int {
-	// TODO: Consider double checking topic ID here?
+func CreateNewPointer(name string, desc string, tags string, topicName string) int {
+	
+	topic, _ := topicModel.GetTopicByName(topicName)
+	
 	db := util.GetConnection()
 	
 	query := `INSERT INTO requests_log
 		(type, mapping_id, title, description, tags, status, change_datetime) 
 		VALUES ('pointer', ?, ?, ?, ?, 'created', NOW())`
-	result, _ := db.Exec(query, topicID, name, desc, tags)
+	result, _ := db.Exec(query, topic.Topic_ID, name, desc, tags)
 	
 	rowsAff, _ := result.RowsAffected()
 	if rowsAff == 1 {
