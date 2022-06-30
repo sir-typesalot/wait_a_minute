@@ -1,5 +1,5 @@
 {{ define "add-item"}}
-<a class="card-links text-primary" href="{{ .AddItemURL }}">
+<a class="card-links text-primary" href="#popupWidget" data-bs-toggle="modal" data-bs-target="#popupWidget">
     <div class="card bg-custom">
       <div class="card-body">
         <span>&#10010;</span> Add New {{ .ContentName }}

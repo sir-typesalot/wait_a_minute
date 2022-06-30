@@ -42,6 +42,22 @@ func GetAllTopics(categoryID int) ([]Topic, error) {
 	return data, nil
 }
 
+func GetOneTopic(topic_ID int) (Topic, error) {
+	
+	var topic Topic
+
+    db := util.GetConnection()
+
+	query := "SELECT * FROM topic WHERE topic_id = ?"
+	result := db.QueryRowx(query, topic_ID)
+
+	if err := result.StructScan(&topic);
+	err != nil {
+		fmt.Println(err.Error())
+	}
+	return topic, nil
+}
+
 func CreateNewTopic(name string, desc string, tags string, categoryName string) int {
 	category, _ := categoryModel.GetCategoryByName(categoryName, true)
 

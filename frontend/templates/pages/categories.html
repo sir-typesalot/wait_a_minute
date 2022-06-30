@@ -15,8 +15,10 @@
       </li>
   </ul>
 </nav>
+{{ template "popup" .}}
 <div class="card-container">
   {{ template "add-item" .}}
+  
   {{range $c := .Content}}
   <a class="card-links text-primary" href="/category/get?name={{$c.Name}}">
     <div class="card bg-custom">

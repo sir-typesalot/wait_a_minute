@@ -17,7 +17,7 @@ func configRoutes() {
 	// Topic Endpoints
 	router.POST("/topic/create", endpoints.CreateTopic)
 	router.GET("/topic/get-all", endpoints.GetTopics)
-	// router.GET("/topic/get", endpoints.GetTopic)
+	router.GET("/topic/get", endpoints.GetTopic)
 	// NEED A GET 1 TOPIC ENDPOINT
 
 	// Pointer Endpoints

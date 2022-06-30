@@ -5,6 +5,8 @@ import (
 	"fmt"
 	"net/http"
 	"strconv"
+	categoryModel "wait_a_minute/backend/category"
+	pointerModel "wait_a_minute/backend/pointer"
 	"wait_a_minute/backend/topic"
 
 	"github.com/gin-gonic/gin"
@@ -28,13 +30,19 @@ func GetTopics(c *gin.Context) {
 	}
 
 	data, err := topicModel.GetAllTopics(catID_int)
+	categoryList, err:= categoryModel.GetAllCategories()
+
 	if err != nil {
 		fmt.Println(err)
-		c.IndentedJSON(http.StatusInternalServerError, data)
+		c.HTML(http.StatusOK, "404.html", gin.H{
+			"ErrorMsg": err,
+		})
 	} else {
 		c.HTML(http.StatusOK, "topics.html", gin.H{
 			"Content": data,
-			"ContentName": "topic",
+			"ParentList": categoryList,
+			"ParentName": "Category",
+			"ContentName": "Topic",
 			"AddItemURL": "/topic/new",
 		})
 	}
@@ -53,5 +61,34 @@ func CreateTopic(c *gin.Context) {
 		c.IndentedJSON(http.StatusOK, "Topic Created")
 	} else {
 		c.IndentedJSON(http.StatusInternalServerError, "Error creating Topic")
+	}
+}
+
+func GetTopic(c *gin.Context) {
+	topicID := c.Query("topicID")
+	
+	var topicID_int int
+	if topicID != "" {
+		topicID_int, _ = strconv.Atoi(topicID)
+	}
+
+	topicData, err := topicModel.GetOneTopic(topicID_int)
+	pointerData, err := pointerModel.GetPointers(topicID_int)
+	topicList, err := topicModel.GetAllTopics(0)
+
+	if err != nil {
+		fmt.Println(err)
+		c.HTML(http.StatusOK, "404.html", gin.H{
+			"ErrorMsg": err,
+		})
+	} else {
+		c.HTML(http.StatusOK, "topic.html", gin.H{
+			"Topic": topicData,
+			"ParentList": topicList,
+			"ParentName": "Topic",
+			"Pointers": pointerData,
+			"ContentName": "Pointer",
+			"AddItemURL": "/pointer/new",
+		})
 	}
 }

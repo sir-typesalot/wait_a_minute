@@ -1,9 +1,10 @@
 function loadData() {
-    changeDate();
+    document.getElementById("year-text").innerHTML = new Date().getFullYear();
+    document.getElementById("newItemForm").addEventListener("submit", myFunction);
 }
 
-function changeDate() {
-    document.getElementById("year-text").innerHTML = new Date().getFullYear();
+function myFunction() {
+  alert(window.location.href);
 }
 
 

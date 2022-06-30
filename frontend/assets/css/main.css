@@ -41,7 +41,7 @@ body {
 
 /* Card styling */
 .card-container {
-    width: 80%;
+    width: 90%;
     margin: auto;
     margin-top: 1rem;
     display: flex;
@@ -49,8 +49,8 @@ body {
 }
 .card {
     flex: 1;
-    margin: 0.5em;
-    padding: .5em;
+    margin: 0.25em;
+    padding: .25em;
     font-size: 1em;
     border-radius: 1em;
     text-decoration: none !important;
@@ -62,6 +62,11 @@ body {
     text-decoration: none !important;
     /* color: deepskyblue; */
 }
+
+.button-container {
+    margin-top: .5em;
+}
+
 /* background */
 .bg-custom {
     background-color: #192c4f;

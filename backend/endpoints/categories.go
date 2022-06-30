@@ -14,7 +14,8 @@ func CategoryByName(c *gin.Context) {
 	name := c.Query("name")
 
 	categoryData, err := categoryModel.GetCategoryByName(name, true)
-	topicData, err:= topicModel.GetAllTopics(categoryData.Category_ID)
+	topicData, err := topicModel.GetAllTopics(categoryData.Category_ID)
+	categoryList, err:= categoryModel.GetAllCategories()
 
 	if err != nil {
 		fmt.Println(err)
@@ -25,6 +26,8 @@ func CategoryByName(c *gin.Context) {
 		c.HTML(http.StatusOK, "category.html", gin.H{
 			"Category": categoryData,
 			"Topics": topicData,
+			"ParentList": categoryList,
+			"ParentName": "Category",
 			"ContentName": "Topic",
 			"AddItemURL": "/topic/new",
 		})

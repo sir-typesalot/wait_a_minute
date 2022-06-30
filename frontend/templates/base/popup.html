@@ -1,0 +1,44 @@
+{{ define "popup" }}
+<!-- Modal -->
+<div class="modal fade" id="popupWidget" tabindex="-1" role="dialog" aria-labelledby="popupTitle">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="popupTitle">Add New {{ .ContentName }}</h5>
+          <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <form id="newItemForm">
+            <div class="form-group">
+              <label for="titleInput">{{ .ContentName }} Title</label>
+              <input type="text" class="form-control" id="titleInput" aria-describedby="emailHelp" placeholder="Title">
+            </div>
+            <div class="form-group">
+              <label for="descInput">Description</label>
+              <input type="text" class="form-control" id="descInput" placeholder="Description">
+            </div>
+            <div class="form-group">
+              <label for="tagsInput">Tags</label>
+              <input type="text" class="form-control" id="tagsInput" placeholder="eg. Automotive,Financial">
+            </div>
+            {{ if eq .ContentName "Category" }}
+            {{ else }}
+            <label for="selectInput">Parent {{ .ParentName }}</label>
+            <select class="form-select" aria-label="Default select example" id="selectInput">
+              <option selected>Select</option>
+              {{ range $t := .ParentList }}
+              <option value="{{$t.Name}}">{{ $t.Name }}</option>
+              {{ end }}
+            </select>
+            {{ end }}
+            <div class="button-container">
+              <button type="submit" class="btn btn-primary">Submit</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+</div>
+{{ end }}
