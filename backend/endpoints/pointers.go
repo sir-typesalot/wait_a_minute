@@ -3,6 +3,7 @@ package endpoints
 import (
 	"fmt"
 	"net/http"
+	"net/url"
 	"strconv"
 	"wait_a_minute/backend/pointer"
 
@@ -37,10 +38,13 @@ func CreatePointer(c *gin.Context) {
 	tags := c.PostForm("tags")
 	parent := c.PostForm("parentContent")
 	status := pointerModel.CreateNewPointer(title, desc, tags, parent)
-	if status == 200 {
-		fmt.Println("Topic Created")
-		c.IndentedJSON(http.StatusOK, "Topic Created")
+	if status != 200 {
+		c.HTML(http.StatusOK, "404.html", gin.H{
+			"ErrorMsg": "",
+		})
 	} else {
-		c.IndentedJSON(http.StatusInternalServerError, "Error creating Topic")
+		fmt.Println("Pointer Created")
+		location := url.URL{Path: "/topics"}
+    	c.Redirect(http.StatusFound, location.RequestURI())
 	}
 }

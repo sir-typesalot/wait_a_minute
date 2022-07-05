@@ -3,8 +3,8 @@ function loadData() {
     document.getElementById("newItemForm").addEventListener("submit", submitData);
 }
 
-// function submitData() {
-//   alert(window.location.href);
-// }
+function submitData(event) {
+    console.log(window.location.href);
+}
 
 

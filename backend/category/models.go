@@ -61,7 +61,7 @@ func CreateCategory(name string, desc string, tags string) int {
 	// TODO : Check if request already exists 
 	query := `INSERT INTO requests_log 
 		(type, mapping_id, title, description, tags, status, change_datetime) 
-		VALUES ('topic', 0, ?, ?, ?, 'created', NOW())`
+		VALUES ('category', 0, ?, ?, ?, 'created', NOW())`
 	result, _ := db.Exec(query, name, desc, tags)
 	
 	rowsAff, _ := result.RowsAffected()
