@@ -15,6 +15,17 @@ body {
     color: white;
 }
 
+/* Styling for hidden links */
+.hidden-link {
+    text-decoration: none;
+    font-style: none;
+    color: inherit;
+}
+.hidden-link:hover {
+    cursor: text;
+    color: inherit;
+}
+
 /* Generic container sizing */
 .container {
     margin-top: 1em;
@@ -67,10 +78,27 @@ body {
     margin-top: .5em;
 }
 
-/* background */
+/* List Styling */
+.list-container {
+    width: 75%;
+    margin: auto;
+}
+.request-list-item {
+    background-color: #192c4f;
+    margin: .5em auto;
+}
+.request-list-item:hover {
+    background-color: #0b1d3d;
+}
+
+.badge {
+    margin: auto .25em;
+}
+/* Background */
 .bg-custom {
     background-color: #192c4f;
 }
+/* Footer styling */
 footer {
     margin-top: 15px;
     text-align: center;
@@ -78,7 +106,7 @@ footer {
 }
 
 /* Media query for Responsive Design */
-@media all and (max-width: 1000px) { 
+@media all and (max-width: 700px) { 
     .card { 
         flex: 1 1 50%; 
     }
@@ -90,5 +118,8 @@ footer {
     }
     .comma li::after {
         content: none;
+    }
+    .list-container {
+        width: 95%;
     }
 }

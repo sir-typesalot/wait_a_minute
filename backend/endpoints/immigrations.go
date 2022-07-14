@@ -3,6 +3,7 @@ package endpoints
 import (
 	"encoding/json"
 	"fmt"
+	"log"
 	"net/http"
 	"wait_a_minute/backend/immigration"
 
@@ -18,10 +19,16 @@ func GetRequests(c *gin.Context) {
 
 	data, err := immigrationModel.GetRequests("created")
 	if err != nil {
-		fmt.Println(err)
-		c.IndentedJSON(http.StatusInternalServerError, data)
+		log.Println(err)
+		c.HTML(http.StatusOK, "404.html", gin.H{
+			"ErrorMsg": err,
+		})
 	} else {
-		c.IndentedJSON(http.StatusOK, data)
+		c.HTML(http.StatusOK, "requests.html", gin.H{
+			"Content": data,
+			"ContentName": "Requests",
+			"AddItemURL": "/topic/create",
+		})
 	}
 }
 
